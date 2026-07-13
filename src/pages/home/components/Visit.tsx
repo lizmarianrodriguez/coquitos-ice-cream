@@ -1,15 +1,17 @@
 const hours = [
-  { day: 'Lunes', open: '11:00 a.m. – 7:00 p.m.' },
-  { day: 'Martes', open: '11:00 a.m. – 7:00 p.m.' },
-  { day: 'Miércoles', open: '11:00 a.m. – 7:00 p.m.', today: true },
-  { day: 'Jueves', open: '11:00 a.m. – 7:00 p.m.' },
-  { day: 'Viernes', open: '11:00 a.m. – 8:00 p.m.' },
-  { day: 'Sábado', open: '11:00 a.m. – 8:00 p.m.' },
-  { day: 'Domingo', open: '12:00 p.m. – 6:00 p.m.' },
+  { day: 'Lunes', open: '11:00 a.m. – 7:00 p.m.', dayNumber: 1 },
+  { day: 'Martes', open: '11:00 a.m. – 7:00 p.m.', dayNumber: 2 },
+  { day: 'Miércoles', open: '11:00 a.m. – 7:00 p.m.', dayNumber: 3 },
+  { day: 'Jueves', open: '11:00 a.m. – 7:00 p.m.', dayNumber: 4 },
+  { day: 'Viernes', open: '11:00 a.m. – 8:00 p.m.', dayNumber: 5 },
+  { day: 'Sábado', open: '11:00 a.m. – 8:00 p.m.', dayNumber: 6 },
+  { day: 'Domingo', open: '12:00 p.m. – 6:00 p.m.', dayNumber: 0 },
 ];
 
 export default function Visit() {
-  return (
+ const today = new Date().getDay();
+ 
+ return (
     <section id="visitanos" className="py-24 md:py-32 bg-background-50">
       <div className="mx-auto max-w-7xl px-4 md:px-10">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
@@ -77,11 +79,11 @@ export default function Visit() {
                   <li
                     key={h.day}
                     className={`flex items-center justify-between py-2.5 text-sm ${
-                      h.today ? 'font-bold text-primary-700' : 'text-foreground-800'
+                      h.dayNumber === today ? 'font-bold text-primary-700' : 'text-foreground-800'
                     }`}
                   >
                     <span className="flex items-center gap-2">
-                      {h.today && <span className="w-1.5 h-1.5 rounded-full bg-primary-500"></span>}
+                      {h.dayNumber === today && <span className="w-1.5 h-1.5 rounded-full bg-primary-500"></span>}
                       {h.day}
                     </span>
                     <span>{h.open}</span>
